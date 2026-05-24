@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 
 # Load the dataset from CSV file using pandas
 df = pd.read_csv(
-    r"C:\Users\ivans\Desktop\All\MSC\Supervised_Machine_learning\Assignment\AIML_assingment_1\study-hours-score-predictor\data\marks_v2.csv"
+    r"..\study-hours-score-predictor\data\marks_v2.csv"
 )
 
 # Split the dataset into:
