@@ -10,6 +10,7 @@ df = pd.read_csv(
     r"C:\Users\ivans\Desktop\All\MSC\Supervised_Machine_learning\Assignment\AIML_assingment_1\study-hours-score-predictor\data\marks_v2.csv"
 )
 
+<<<<<<< HEAD
 # Split the dataset into:
 # - Features (hours studied)
 # - Target variable (marks obtained)
@@ -19,6 +20,9 @@ x_train, x_test, y_train, y_test = train_test_split(
     test_size=0.2, # test_size=0.2  80% data for training and 20% for testing
     random_state=42 # random_state=42 ensures reproducible results
 )
+=======
+df=pd.read_csv(r"..\study-hours-score-predictor\data\marks_v2.csv")
+>>>>>>> 420395c9bcdf53f98f99531a21fd257ff3a70f67
 
 # Convert pandas Series into NumPy arrays
 # reshape((-1,1)) converts the data into a 2D array

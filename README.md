@@ -27,7 +27,7 @@ The dataset contains:
 
 | Feature | Description |
 |---------|-------------|
-| Hours Studied | Number of hours a student studied |
+| Hours | Number of hours a student studied |
 | Marks | Student exam score |
 
 ---
@@ -81,8 +81,7 @@ Example:
 
 - Add larger datasets
 - Compare multiple regression algorithms
-- Deploy model using Flask or Streamlit
-- Build an interactive dashboard
+
 
 ---
 
