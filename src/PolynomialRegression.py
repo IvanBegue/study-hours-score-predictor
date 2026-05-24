@@ -1,50 +1,63 @@
-import numpy as np 
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
 from sklearn.preprocessing import PolynomialFeatures
-import matplotlib.pyplot as plt
-import pandas as pd
+from sklearn import metrics
 
-df=pd.read_csv(r"C:\Users\ivans\Desktop\All\MSC\Supervised_Machine_learning\Assignment\AIML_assingment_1\study-hours-score-predictor\data\marks_v2.csv") #importing datasets using pandas
+#Import dataset using Pandas
+df = pd.read_csv(r"..\study-hours-score-predictor\data\marks_v2.csv")
 
-x=df[['hours']].values
+x = df[['hours']].values # Extract feature (independent variable) - study hours
+y = df['marks'].values # Extract target variable (dependent variable) - marks
+ 
 
-y=df['marks'].values
+# TRAIN / TEST SPLIT
+x_train, x_test, y_train, y_test = train_test_split(
+    x, y,
+    test_size=0.45,  # 55% data for training and 45% for testing
+    random_state=42
+)
 
-poly = PolynomialFeatures(degree=3 , include_bias=True)
-x_transform=poly.fit_transform(x)
+poly = PolynomialFeatures(degree=3) # Using a 3 degree
+
+# Transform features
+x_train_poly = poly.fit_transform(x_train)
+x_test_poly = poly.transform(x_test)
+
+# Train model
+model = LinearRegression()
+model.fit(x_train_poly, y_train)
+
+# Predict on test set
+y_pred = model.predict(x_test_poly)
 
 
-print(x_transform.shape)
-print(x_transform)
+print("MAE:", metrics.mean_absolute_error(y_test, y_pred))  # average absolute error
+print("MSE:", metrics.mean_squared_error(y_test, y_pred))   # squared error penalty
+print("RMSE:", np.sqrt(metrics.mean_squared_error(y_test, y_pred)))  # error in original scale
+print("R2 Score:", metrics.r2_score(y_test, y_pred))  # how well model explains variance
 
-model = LinearRegression(fit_intercept=False)
-model.fit(x_transform,y)
+# visualisation Result
 
-y_pred=model.predict(x_transform)
-print('Predicted response:')
-print(y_pred)
+plt.figure(figsize=(10,6))
 
-# Plot
-plt.figure(figsize=(8,5))
+plt.scatter(x, y, color='blue', label='Training Data')
 
-# Actual data points
-plt.scatter(x, y, color='blue', s=50, label='Actual Data')
+#Creating Smooth curve for polynomial regression
+x_line = np.linspace(x.min(), x.max(), 100).reshape(-1, 1)
+x_line_poly = poly.transform(x_line)
+y_line = model.predict(x_line_poly)
 
-# Polynomial regression curve
-sorted_index = x.flatten().argsort()
-x_sorted = x.flatten()[sorted_index]
-y_sorted = y_pred.flatten()[sorted_index]
+plt.plot(x_line, y_line, color='red', label='Polynomial Regression (Degree 3)') # Plot regression curve
 
-plt.plot(x_sorted, y_sorted, color='red', linewidth=2,
-         label='Polynomial Regression')
-
-# Labels and title
+# Labels
 plt.xlabel('Hours Studied')
 plt.ylabel('Marks Obtained')
-plt.title('Polynomial Regression (Degree 2)')
+plt.title('Polynomial Regression (Degree 3)')
 
-# Styling
 plt.legend()
-plt.grid(True, linestyle='--', alpha=0.6)
+plt.grid(True, linestyle='--', alpha=0.5)
 
 plt.show()
