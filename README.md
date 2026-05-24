@@ -38,9 +38,7 @@ The dataset contains:
 - Pandas
 - NumPy
 - Matplotlib
-- Seaborn
 - Scikit-learn
-- Jupyter Notebook
 
 ---
 
@@ -57,12 +55,11 @@ The dataset contains:
 ## Project Workflow
 
 1. Import dataset
-2. Clean and preprocess data
-3. Visualize relationships between variables
-4. Split data into training and testing sets
-5. Train Linear Regression model
-6. Predict student scores
-7. Evaluate model performance
+2. Visualize relationships between variables
+3. Split data into training and testing sets
+4. Train Linear Regression model
+5. Predict student scores
+6. Evaluate model performance
 
 ---
 
@@ -75,19 +72,10 @@ Example:
 - More study hours generally lead to higher marks
 - Regression line used for prediction
 
----
-
-## Future Improvements
-
-- Add larger datasets
-- Compare multiple regression algorithms
-
-
----
 
 ## Installation
 
 Clone the repository:
 
 ```bash
-git clone https://github.com/your-username/study-hours-score-predictor.git
+git clone https://github.com/IvanBegue/study-hours-score-predictor
