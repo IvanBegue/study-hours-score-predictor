@@ -6,7 +6,7 @@ from sklearn import metrics
 import matplotlib.pyplot as plt
 
 
-df=pd.read_csv(r"C:\Users\ivans\Desktop\All\MSC\Supervised_Machine_learning\Assignment\AIML_assingment_1\study-hours-score-predictor\data\marks_v2.csv")
+df=pd.read_csv(r"..\study-hours-score-predictor\data\marks_v2.csv")
 
 x_train, x_test ,y_train , y_test = train_test_split(df['hours'],df['marks'],test_size=0.2,random_state=42)
 
